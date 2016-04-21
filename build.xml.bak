@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="SampleJavaProject" default="jar"
          xmlns:ivy="antlib:org.apache.ivy.ant">
-	
+
   <!-- Project-specific configuration -->
   <loadproperties srcfile="project.properties"/>
   <property name="main.class" value="${package.main}.${ant.project.name}"/>
@@ -14,24 +14,10 @@
   <property name="dist.dir" value="dist"/>
 
   <!-- Targets -->
-	<!--
-	<target name="ivy-load">
-		<path id="ivy.lib.path">
-			<pathelement location="/home/centos/.ant/lib/ivy.jar" />
-		</path>
-		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib.org.apache.ivy.ant" classpath="ivy.lib.path" />
-	</target>
-	-->
-	
-	<target name="bootstrap" description="Install ivy">
-		<mkdir dir="${user.home}/.ant/lib" />
-		<get src="https://s3.amazonaws.com/jramos-ops/ivy-2.4.0.jar"
-		     dest="${user.home}/.ant/lib/ivy.jar" />
-	</target>
-	
+
   <target name="resolve" description="Retrieve dependencies with Ivy.">
-  	<ivy:resolve log="download-only"/>
-  	<ivy:cachepath conf="build" pathid="build.classpath"/>
+    <ivy:resolve log="download-only"/>
+    <ivy:cachepath conf="build" pathid="build.classpath"/>
     <ivy:cachepath conf="default" pathid="runtime.classpath"/>
     <ivy:cachefileset conf="default" setid="runtime.fileset"/>
     <ivy:cachepath conf="test" pathid="test.classpath"/>
